@@ -1,12 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+// import Ionicon
+import SearchScreen from './Screens/SearchScreen';
+import HomeScreen from './Screens/HomeScreen';
+import LibraryScreen from './Screens/LibraryScreen';
 
-export default function App() {
+const Tab = createMaterialBottomTabNavigator()
+
+ const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+      <NavigationContainer>
+        <Tab.Navigator
+          initialRouteName='Home'
+          screenOptions={({route}) =>({
+            tabBarIcon: ({focus, color, size}) => {
+
+            }
+          })}>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Library" component={LibraryScreen} />
+      </Tab.Navigator>
+      </NavigationContainer>
+    
   );
 }
 
@@ -18,3 +37,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App
