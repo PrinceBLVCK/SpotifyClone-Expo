@@ -2,6 +2,7 @@ import React from "react";
 import {View, Text, StyleSheet, ImageBackground} from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 export default SearchScreen = () => {
@@ -15,8 +16,18 @@ export default SearchScreen = () => {
                     <Ionicons name="chevron-back-outline" size={32} color="#fff" style={[styles.backBtn, {margin:30}]} />
                     <Text style={styles.heading}>High Klassified</Text>
                 </ImageBackground>
+                <LinearGradient
+                    style={{flex:.6}}
+                    start={{x:0,y:0}}
+                    end={{x:0,y:.4}}
+                    colors={[ '#343434', '#000000']}>
+
+                    <Ionicons name='md-ellipsis-horizontal-sharp' size={30} color={'#fffa'}/>
+                </LinearGradient>
                 
+
             </View>
+            
 
         </>
     )
@@ -46,8 +57,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#00000080",
         opacity:1,
         borderRadius: 20
-        
-
     }
+
 
 })
