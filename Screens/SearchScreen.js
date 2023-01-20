@@ -1,5 +1,7 @@
 import React from "react";
 import {View, Text, StyleSheet, ImageBackground} from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 export default SearchScreen = () => {
@@ -10,11 +12,12 @@ export default SearchScreen = () => {
                 source={require('../assets/bg.jpg')}
                 style={styles.bg_img}
                 resizeMode='cover'>
-
+                    <Ionicons name="chevron-back-outline" size={32} color="#fff" style={[styles.backBtn, {margin:30}]} />
                     <Text style={styles.heading}>High Klassified</Text>
                 </ImageBackground>
                 
             </View>
+
         </>
     )
 }
@@ -32,7 +35,18 @@ const styles = StyleSheet.create({
         color:'white', 
         top: "75%",
         position:'relative',
-        paddingHorizontal:20
+        paddingHorizontal:35,
+
+    },
+    backBtn:{
+        width:40,
+        position:'absolute',
+        height:40,
+        padding: 2,
+        backgroundColor: "#00000080",
+        opacity:1,
+        borderRadius: 20
+        
 
     }
 
