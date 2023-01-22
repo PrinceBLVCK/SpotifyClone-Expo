@@ -9,6 +9,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { FlatList } from "react-native-gesture-handler";
+import AppLoading from 'expo-app-loading'
+import * as Fonts from 'expo-font'
 
 const Data = [
     {
@@ -25,8 +27,11 @@ const Data = [
 ]
 
 const Item = ({index,title, likes}) => (
-    <View style={{flex:1, flexDirection:'row', margin:10, marginHorizontal:30}}>
+    <View style={{flex:1, flexDirection:'row', margin:10, marginHorizontal:30, alignItems:'center'}}>
         <Text style={{fontSize:(Platform.OS === 'ios') ? '18em' : 18, color:'white', justifyContent:'center', alignContent:'center', textAlign:'center', padding:10}}>{index}</Text>
+        <Image 
+            style={{width:45, height:45, marginHorizontal:10}}
+            source={require('../assets/bg.jpg')}/>
         <View style={{flex:1, flexDirection:'column'}}>
             <Text style={[styles.itemTitle]}>{title}</Text>
             <Text style={styles.itemLikes}>{likes}</Text>
@@ -37,6 +42,17 @@ const Item = ({index,title, likes}) => (
 )
 
 export default SearchScreen = () => {
+
+    let [fontsLoaded] = Fonts.useFonts({
+        'ProductSansBold': require('../assets/fonts/ProductSans-Bold.ttf'),
+        'ProductSansLight': require('../assets/fonts/ProductSans-Light.ttf'),
+        'ProductSansBlack': require('../assets/fonts/ProductSans-Black.ttf')
+    })
+
+    if(!fontsLoaded){
+        return <AppLoading />
+    }
+
     const renderItem = ({item}) => <Item index={item.id} title={item.title} likes={item.likes} />
     return(
         <>
@@ -81,17 +97,17 @@ export default SearchScreen = () => {
                         </View>
                     </View>
                     <View style={[{flex:.2, flexDirection:"row", padding:20, paddingHorizontal:30}]}>
-                        <View>
+                        <View >
                             <Image 
                                 source={require('../assets/bg.jpg')}
                                 resizeMode="cover"
                                 style={{width:55, height:55, borderRadius:40, overflow:"hidden"}} />
                             <View style={[styles.favorite]}>
-                                <MaterialIcons name="favorite" size={30} color="white" />
+                                <MaterialIcons name="favorite" size={20} color="white" />
                             </View>
                         </View>
                         <View style={{marginHorizontal:10 , flex:.8, flexDirection:"column", padding:10}}>
-                            <Text style={{color:"white", fontWeight:"bold", fontSize: (Platform.OS === 'ios') ? "16em" : 16}}>Izingoma Ezithandiwe</Text>
+                            <Text style={{color:"white", fontFamily:'ProductSansBold', fontWeight:"bold", fontSize: (Platform.OS === 'ios') ? "16em" : 16}}>Izingoma Ezithandiwe</Text>
                             <View style={{flex:1, flexDirection:"row", alignItems:"center", }}>
                                 <Text style={{color:'#fff6', fontSize:(Platform.OS === 'ios') ? '14em' : 14}}>5 izingoma </Text>
                                 <View style={[styles.dot, {width:5, height:5, marginHorizontal:2}]}/>
@@ -131,7 +147,8 @@ const styles = StyleSheet.create({
         overflow:"hidden",
     },
     heading:{
-        fontSize:(Platform.OS === 'ios') ? '32em' : 32, 
+        fontSize:(Platform.OS === 'ios') ? '45em' : 45, 
+        fontFamily: "ProductSansBlack",
         color:'white', 
         top: "80%",
         fontWeight:"bold",
@@ -190,9 +207,10 @@ const styles = StyleSheet.create({
         backgroundColor:"#393",
         alignItems:"center",
         justifyContent:"center",
-        padding:3,
         bottom:25,
-        left: 30
+        left: 30,
+        borderColor:'black',
+        borderWidth:5
 
     },
     dot:{
@@ -205,16 +223,18 @@ const styles = StyleSheet.create({
         padding:2,
         margin:0,
         color:'white',
-        fontSize: (Platform.OS === 'ios') ? '20em' : 18,
-        fontWeight:'bold',
+        fontFamily: 'ProductSansLight',
+        fontSize: (Platform.OS === 'ios') ? '16em' : 16,
         textAlign:'left',
+        fontWeight:'bold',
         justifyContent:'center',
         alignItems:'center',
         
     },
     itemLikes:{
         color:'#fff6',
-        fontSize: (Platform.OS === 'ios') ?'18em' : 16,
+        fontFamily:'ProductSansLight',
+        fontSize: (Platform.OS === 'ios') ?'16em' : 16,
         padding:2,
         margin:0
     }
