@@ -46,7 +46,9 @@ export default SearchScreen = () => {
     let [fontsLoaded] = Fonts.useFonts({
         'ProductSansBold': require('../assets/fonts/ProductSans-Bold.ttf'),
         'ProductSansLight': require('../assets/fonts/ProductSans-Light.ttf'),
-        'ProductSansBlack': require('../assets/fonts/ProductSans-Black.ttf')
+        'ProductSansBlack': require('../assets/fonts/ProductSans-Black.ttf'),
+        'ProductSansRegular': require('../assets/fonts/ProductSans-Regular.ttf'),
+        'ProductSansThin':require('../assets/fonts/ProductSans-Thin.ttf')
     })
 
     if(!fontsLoaded){
@@ -107,7 +109,7 @@ export default SearchScreen = () => {
                             </View>
                         </View>
                         <View style={{marginHorizontal:10 , flex:.8, flexDirection:"column", padding:10}}>
-                            <Text style={{color:"white", fontFamily:'ProductSansBold', fontWeight:"bold", fontSize: (Platform.OS === 'ios') ? "16em" : 16}}>Izingoma Ezithandiwe</Text>
+                            <Text style={{color:"white", fontFamily:'ProductSansRegular',  fontSize: (Platform.OS === 'ios') ? "16em" : 16}}>Izingoma Ezithandiwe</Text>
                             <View style={{flex:1, flexDirection:"row", alignItems:"center", }}>
                                 <Text style={{color:'#fff6', fontSize:(Platform.OS === 'ios') ? '14em' : 14}}>5 izingoma </Text>
                                 <View style={[styles.dot, {width:5, height:5, marginHorizontal:2}]}/>
@@ -233,10 +235,9 @@ const styles = StyleSheet.create({
     },
     itemLikes:{
         color:'#fff6',
-        fontFamily:'ProductSansLight',
+        fontFamily:'ProductSansRegular',
         fontSize: (Platform.OS === 'ios') ?'16em' : 16,
         padding:2,
-        margin:0
     }
 
 })
